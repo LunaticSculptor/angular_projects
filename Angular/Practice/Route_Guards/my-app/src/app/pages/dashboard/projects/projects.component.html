@@ -1,0 +1,15 @@
+<div class="project-container">
+    <h2>Projects</h2>
+
+    <ul class="project-list">
+        @for(project of projects; track $index){
+            <li>
+                <span>{{project.name}}</span>
+                <button
+                [routerLink]="['/dashboard/projects', project.id, 'edit']"
+                class="edit-button"
+                >Edit</button>
+            </li>
+        }
+    </ul>
+</div>

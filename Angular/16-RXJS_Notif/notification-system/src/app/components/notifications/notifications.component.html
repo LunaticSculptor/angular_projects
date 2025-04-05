@@ -1,0 +1,9 @@
+<div class="container">
+    <h2>🔔 Real-Time Notifications</h2>
+    <button (click)="togglePause()" class="btn">Pause/Resume</button>
+  
+    <div *ngFor="let notification of notifications" class="notification">
+      {{ notification }}
+    </div>
+  </div>
+  

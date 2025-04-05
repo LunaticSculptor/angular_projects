@@ -1,0 +1,20 @@
+<header *ngIf="!isLoginPage" class="bg-blue-600 text-white py-4 shadow-lg">
+  <div class="container mx-auto flex justify-between items-center px-4">
+    <h1 class="text-2xl font-bold">Quiz App</h1>
+    
+    <nav>
+      <ul class="flex space-x-6 items-center">
+        <li><a routerLink="/" class="text-white font-semibold hover:text-gray-300">Home</a></li>
+        <li><a routerLink="/quizzes" class="text-white font-semibold hover:text-gray-300">Quizzes</a></li>
+        <li *ngIf="isAdmin"><a routerLink="/create" class="text-white font-semibold hover:text-gray-300">Create Quiz</a></li>
+        <li><a routerLink="/leaderboard" class="text-white font-semibold hover:text-gray-300">Leaderboard</a></li>
+        <li><a routerLink="/about" class="text-white font-semibold hover:text-gray-300">About</a></li>
+
+        <!-- Show username if logged in -->
+        <li *ngIf="username" class="text-yellow-300 font-bold">Welcome, {{ username }}!</li>
+
+        <li><button (click)="logout()" class="bg-red-500 px-3 py-1 rounded hover:bg-red-700">Logout</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,258 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "username": "user1",
+      "password": "user123",
+      "role": "user"
+    },
+    {
+      "id": "3",
+      "username": "user2",
+      "password": "user123",
+      "role": "user"
+    }
+  ],
+  "quizResponses": [
+    {
+      "id": "817e",
+      "userId": "2",
+      "quizId": 6,
+      "submittedAt": "2025-03-31T11:13:40.422Z",
+      "score": 5,
+      "answers": [
+        {
+          "questionId": 1,
+          "selectedAnswer": "4",
+          "isCorrect": true
+        },
+        {
+          "questionId": 2,
+          "selectedAnswer": "1",
+          "isCorrect": false
+        }
+      ]
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "1",
+      "category": "Angular",
+      "maxScore": 10,
+      "maxTime": 60,
+      "questions": [
+        {
+          "id": 1,
+          "type": "mcq",
+          "title": "What is Angular?",
+          "description": "A brief description of Angular",
+          "options": [
+            "A framework",
+            "A database",
+            "A programming language",
+            "A testing tool"
+          ],
+          "correctAnswer": "A framework",
+          "marksIfCorrect": 5,
+          "negativeMark": 0
+        },
+        {
+          "id": 2,
+          "type": "text",
+          "title": "Define Dependency Injection",
+          "description": "A brief explanation about Dependency Injection",
+          "options": null,
+          "correctAnswer": "A design pattern",
+          "marksIfCorrect": 5,
+          "negativeMark": 0
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "category": "Spring Boot",
+      "maxScore": 10,
+      "maxTime": 60,
+      "questions": [
+        {
+          "id": 1,
+          "type": "mcq",
+          "title": "What is Spring Boot?",
+          "description": "A brief introduction to Spring Boot",
+          "options": [
+            "A framework",
+            "A programming language",
+            "A cloud platform",
+            "A database"
+          ],
+          "correctAnswer": "A framework",
+          "marksIfCorrect": 5,
+          "negativeMark": 0
+        },
+        {
+          "id": 2,
+          "type": "text",
+          "title": "Explain Spring Boot Starter",
+          "description": "A brief explanation about Spring Boot Starter",
+          "options": null,
+          "correctAnswer": "A pre-configured set of dependencies",
+          "marksIfCorrect": 5,
+          "negativeMark": 0
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "category": "General Knowledge",
+      "maxScore": 10,
+      "maxTime": 60,
+      "questions": [
+        {
+          "id": 1,
+          "type": "mcq",
+          "title": "What is a Bird?",
+          "description": "Identify which of the following is a bird",
+          "options": [
+            "Anaconda",
+            "Elephant",
+            "Dog",
+            "Duck"
+          ],
+          "correctAnswer": "Duck",
+          "marksIfCorrect": 5,
+          "negativeMark": 0
+        },
+        {
+          "id": 2,
+          "type": "mcq",
+          "title": "Who was the first man to walk on the moon?",
+          "description": "Identify the astronaut who first set foot on the moon.",
+          "options": [
+            "Buzz Aldrin",
+            "Neil Armstrong",
+            "Yuri Gagarin",
+            "Michael Collins"
+          ],
+          "correctAnswer": "Neil Armstrong",
+          "marksIfCorrect": 5,
+          "negativeMark": 0
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "category": "Spring Boot",
+      "maxScore": 10,
+      "maxTime": 60,
+      "questions": [
+        {
+          "id": 1,
+          "type": "text",
+          "title": "What is Spring Boot",
+          "description": "",
+          "options": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "correctAnswer": "Backend",
+          "marksIfCorrect": 5,
+          "negativeMark": 0
+        },
+        {
+          "id": 1,
+          "type": "text",
+          "title": "Why to use Spring Boot",
+          "description": "",
+          "options": [
+            "To build app",
+            "For Fun",
+            "To earn money",
+            "Timepass"
+          ],
+          "correctAnswer": "To build app",
+          "marksIfCorrect": 5,
+          "negativeMark": 0
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "category": "General Knowledge",
+      "maxScore": 10,
+      "maxTime": 60,
+      "questions": [
+        {
+          "id": 1,
+          "type": "mcq",
+          "title": "What is water?",
+          "description": "",
+          "options": [
+            "H2O",
+            "Atom",
+            "Component",
+            "Dust"
+          ],
+          "correctAnswer": "H2O",
+          "marksIfCorrect": 5,
+          "negativeMark": 0
+        },
+        {
+          "id": 2,
+          "type": "mcq",
+          "title": "What is needed to live?",
+          "description": "",
+          "options": [
+            "Water",
+            "Dust",
+            "Money",
+            "People"
+          ],
+          "correctAnswer": "Water",
+          "marksIfCorrect": 5,
+          "negativeMark": 0
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "category": "General Knowledge",
+      "maxScore": 10,
+      "maxTime": 60,
+      "questions": [
+        {
+          "id": 1,
+          "type": "mcq",
+          "title": "What is 2+2=?",
+          "description": "",
+          "options": [
+            "1",
+            "2",
+            "Three",
+            "4"
+          ],
+          "correctAnswer": "4",
+          "marksIfCorrect": 5,
+          "negativeMark": 0
+        },
+        {
+          "id": 2,
+          "type": "text",
+          "title": "What is 5+5?",
+          "description": "",
+          "options": [],
+          "correctAnswer": "10",
+          "marksIfCorrect": 5,
+          "negativeMark": 0
+        }
+      ]
+    }
+  ]
+}

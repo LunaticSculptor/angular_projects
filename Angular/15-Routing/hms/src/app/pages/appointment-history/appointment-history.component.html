@@ -1,0 +1,25 @@
+<h2>Your Appointments</h2>
+
+<section *ngIf="upcomingAppointments().length > 0">
+  <h3>Upcoming Appointments</h3>
+  <ul>
+    <li *ngFor="let appointment of upcomingAppointments()">
+      <strong>{{ appointment.serviceType }}</strong> with <em>{{ appointment.patientDetails }}</em>
+      <br>
+      Date: {{ appointment.date }} | Special Requests: {{ appointment.specialRequests }}
+    </li>
+  </ul>
+</section>
+
+<section *ngIf="pastAppointments().length > 0">
+  <h3>Past Appointments</h3>
+  <ul>
+    <li *ngFor="let appointment of pastAppointments()">
+      <strong>{{ appointment.serviceType }}</strong> with <em>{{ appointment.patientDetails }}</em>
+      <br>
+      Date: {{ appointment.date }} | Special Requests: {{ appointment.specialRequests }}
+    </li>
+  </ul>
+</section>
+
+<p *ngIf="appointments().length === 0">No appointments found.</p>

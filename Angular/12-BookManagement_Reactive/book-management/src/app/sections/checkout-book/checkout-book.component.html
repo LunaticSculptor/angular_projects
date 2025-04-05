@@ -1,0 +1,69 @@
+<!-- <p>checkout-book works!</p> -->
+<form [formGroup]="checkoutForm()!" (ngSubmit)="onSubmit()">
+    <h2>Checkout Book Form</h2>
+    <!-- Add Book Details -->
+    <fieldset formGroupName="checkoutInfo">
+        <legend>Checkout Book</legend>
+        
+       <!-- Book Title -->
+        <div class="form-input">
+            <label for="bookTitle">Book Title: </label>
+            <select name="bookTitle" id="bookTitle" formControlName="bookTitle">
+            <option value="" disabled selected>Select Title</option>
+            @for (book of booksList(); track $index) {
+                <option [value]="book.bookTitle">{{ book.bookTitle }}</option>
+            }
+            </select>
+        <!-- Show Errors -->
+            @let book = checkoutForm()!.get('checkoutInfo.bookTitle');
+            <div class="error-text">
+                @if(book?.invalid && book?.touched){
+                    <small>Book Title is required.</small>
+                }
+            </div>
+        </div>
+
+        <!-- Book Borrower -->
+        <div class="form-input">
+            <label for="bookBorrower">Book Borrower: </label>
+            <input type="text" id="bookBorrower" formControlName="bookBorrower">
+            <!-- Show Errors -->
+            @let borrower = checkoutForm()!.get('checkoutInfo.bookBorrower');
+            <div class="error-text">
+                @if(borrower?.invalid && borrower?.touched){
+                    @if(borrower?.hasError('minlength')){
+                        <small>Book Author must have atleast 3 characters.</small>
+                    }@else if(borrower?.hasError('maxlength')){
+                        <small>Book Author must have at most 50 characters.</small>
+                    }@else {
+                        <small>Book Author is required.</small>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Book Checkout Date -->
+        <div class="form-input">
+            <label for="bookCheckoutDate">Book Checkout Date: </label>
+            <input type="date" id="bookCheckoutDate" formControlName="bookCheckoutDate">
+            <!-- Show Errors -->
+            @let checkoutDate = checkoutForm()!.get('checkoutInfo.bookCheckoutDate');
+            <div class="error-text">
+                @if(checkoutDate?.invalid && checkoutDate?.touched){
+                    @if(checkoutDate?.hasError('futureDate')){
+                        <small>Checkout Date cannot be in future.</small>
+                    }@else {
+                        <small>Checkout Date is required.</small>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <!-- <div class="form-input" align="center"> -->
+        <div class="form-input">
+            <button type="submit" [disabled]="checkoutForm()!.invalid">Submit</button>
+        </div>
+
+    </fieldset>
+</form>

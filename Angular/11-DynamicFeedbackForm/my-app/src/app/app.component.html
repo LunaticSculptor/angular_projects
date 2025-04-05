@@ -1,0 +1,68 @@
+<div class="container mt-4">
+  <h2>Customer Feedback Form</h2>
+  <form #feedbackForm="ngForm" (ngSubmit)="onSubmit()">
+    <div *ngFor="let field of formConfig.fields; let i = index" class="mb-3">
+      <label [for]="field.model" class="form-label">{{ field.label }}</label>
+
+      <!-- Text, Email, and Date Inputs -->
+      <input *ngIf="field.type === 'text' || field.type === 'email' || field.type === 'date'"
+             [type]="field.type"
+             class="form-control"
+             [id]="field.model"
+             [(ngModel)]="feedbackFormData[field.model]"
+             [name]="field.model"
+             [required]="field.required ?? false"
+             #name="ngModel"
+             (change)="field.type === 'date' && isFutureDate(field) ? feedbackFormData[field.model] = '' : null" />
+
+      <!-- Dropdown -->
+      <select *ngIf="field.type === 'select'"
+              class="form-select"
+              [id]="field.model"
+              [(ngModel)]="feedbackFormData[field.model]"
+              [name]="field.model"
+              [required]="field.required ?? false"
+              #ngModel="ngModel">
+        <option value="" disabled selected>Select an option</option>
+        <option *ngFor="let option of field.options" [value]="option">{{ option }}</option>
+      </select>
+
+      <!-- Checkbox -->
+      <div *ngIf="field.type === 'checkbox'" class="form-check">
+        <input class="form-check-input"
+               type="checkbox"
+               [id]="field.model"
+               [(ngModel)]="feedbackFormData[field.model]"
+               [name]="field.model"
+               [required]="field.required ?? false"
+               #ngModel="ngModel">
+        <label class="form-check-label" [for]="field.model">{{ field.label }}</label>
+      </div>
+
+      <!-- Text Area -->
+      <textarea *ngIf="field.type === 'textarea'"
+                class="form-control"
+                [id]="field.model"
+                [(ngModel)]="feedbackFormData[field.model]"
+                [name]="field.model"
+                [required]="field.required ?? false"
+                #ngModel="ngModel">
+      </textarea>
+
+      <!-- Validation Error Messages -->
+      <div *ngIf="feedbackForm.invalid && feedbackForm.touched" class="text-danger">
+        <small *ngIf="field.required && !feedbackFormData[field.model]">This field is required.</small>
+      </div>
+
+      <div *ngIf="field.type === 'email' && feedbackForm.errors?.['email']" class="text-danger">
+        <small>Enter a valid email address.</small>
+      </div>
+
+      <div *ngIf="field.type === 'date' && isFutureDate(field)" class="text-danger">
+        <small>Date cannot be in the future.</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!isFormValid()">Submit</button>
+  </form>
+</div>

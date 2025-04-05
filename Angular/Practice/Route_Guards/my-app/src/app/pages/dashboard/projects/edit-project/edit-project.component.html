@@ -1,0 +1,14 @@
+<!-- <p>Edit Project works!</p> -->
+<div class="edit-project-container">
+    <h3>Edit Project</h3>
+    <div class="input-group">
+        <label for="projectData">Project Details:</label>
+        <input
+        type="text"
+        id="projectData"
+        [(ngModel)]="projectData"
+        placeholder="Edit project details"
+        />
+    </div>
+    <button (click)="save()" class="save-button">Save</button>
+</div>

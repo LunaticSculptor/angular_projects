@@ -1,0 +1,58 @@
+.form-input, fieldset{
+    margin: 2vh;
+}
+
+.error-text{
+    color: red;
+}
+
+/* button[type="submit"]{
+    margin-inline-end: 1.5vh;
+    cursor: pointer;
+} */
+
+button{
+    margin-inline-end: 1.5vh;
+    margin-inline-start: 1.5vh;
+    margin-top: 1.5vh;
+    cursor: pointer;
+}
+
+input.ng-valid, select.ng-valid{
+    border: 2px solid green;
+}
+
+input.ng-invalid, select.ng-invalid{
+    border: 2px solid red;
+}
+
+input.ng-pristine {
+    border: 1px solid grey;
+}
+
+.phoneNo{
+    border: 1vh;
+}
+
+.phoneInput{
+    margin-inline-end: 5px;
+}
+
+
+/* .phone-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+
+    margin-left: 10px;
+    margin-right: 10px;
+} */
+
+/* .phoneNo, select, button {
+    padding: 8px; /* Add padding for better appearance */
+/* } */
+
+/* button {
+    cursor: pointer; /* Show pointer cursor on buttons */
+/* } */

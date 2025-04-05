@@ -1,0 +1,30 @@
+<h2>Recipe List</h2>
+
+<!-- Search and Filter Form -->
+<form [formGroup]="filterForm" class="filter-container">
+  <input type="text" placeholder="Search by recipe name" formControlName="search" />
+
+  <select formControlName="category">
+    <option value="">All Categories</option>
+    <option *ngFor="let cat of categories()" [value]="cat">{{ cat }}</option>
+  </select>
+
+  <select formControlName="country">
+    <option value="">All Countries</option>
+    <option *ngFor="let c of countries()" [value]="c">{{ c }}</option>
+  </select>
+</form>
+
+<!-- Recipe List -->
+<div *ngIf="recipes(); else loading">
+  <div *ngFor="let recipe of recipes()" class="recipe-card" (click)="viewRecipe(recipe.id)">
+    <img [src]="recipe.imageUrl" alt="Recipe Image">
+    <h3>{{ recipe.title }}</h3>
+    <p><strong>Category:</strong> {{ recipe.category }}</p>
+    <p><strong>Country:</strong> {{ recipe.chefDetails?.contact?.country }}</p>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Loading recipes...</p>
+</ng-template>

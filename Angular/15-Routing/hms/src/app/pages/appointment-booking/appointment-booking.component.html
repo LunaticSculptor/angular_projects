@@ -1,0 +1,83 @@
+<!-- <p>appointment-booking works!</p> -->
+<form [formGroup]="appointmentForm()!" (ngSubmit)="onSubmit()">
+    <h2>Appointment Form</h2>
+    <!-- Add Appointment Details -->
+    <fieldset formGroupName="patientInfo">
+        <legend>Appointment Form</legend>
+        
+        <!-- Appointment Date Time-->
+        <div class="form-input">
+            <label for="date">Appointment Date Time: </label>
+            <input type="datetime-local" id="date" formControlName="date">
+            <!-- Show Errors -->
+            @let appointmentDate = appointmentForm()!.get('patientInfo.date');
+            <div class="error-text">
+                @if(appointmentDate?.invalid && appointmentDate?.touched){
+                    @if(appointmentDate?.hasError('pastDate')){
+                        <small>Appointment Date Time cannot be in past.</small>
+                    }@else {
+                        <small>Appointment Date Time is required.</small>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Patient Details -->
+        <div class="form-input">
+            <label for="patientDetails">Patient Name: </label>
+            <input type="text" id="patientDetails" formControlName="patientDetails">
+            <!-- Show Errors -->
+            @let name = appointmentForm()!.get('patientInfo.patientDetails');
+            <div class="error-text">
+                @if(name?.invalid && name?.touched){
+                    @if(name?.hasError('minlength')){
+                        <small>Patient Name must have atleast 3 characters.</small>
+                    }@else if(name?.hasError('maxlength')){
+                        <small>Patient Name must have at most 50 characters.</small>
+                    }@else {
+                        <small>Patient Name is required.</small>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Service Details -->
+        <div class="form-input">
+            <label for="serviceType">Service Name: </label>
+            <input type="text" id="serviceType" formControlName="serviceType">
+            <!-- Show Errors -->
+            @let service = appointmentForm()!.get('patientInfo.serviceType');
+            <div class="error-text">
+                @if(service?.invalid && service?.touched){
+                    @if(service?.hasError('minlength')){
+                        <small>Service Name must have atleast 3 characters.</small>
+                    }@else if(service?.hasError('maxlength')){
+                        <small>Service Name must have at most 50 characters.</small>
+                    }@else {
+                        <small>Service Name is required.</small>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Request Details -->
+        <div class="form-input">
+            <label for="specialRequests">Request Details: </label>
+            <input type="text" id="specialRequests" formControlName="specialRequests">
+            <!-- Show Errors -->
+            @let specialRequests = appointmentForm()!.get('patientInfo.specialRequests');
+            <div class="error-text">
+                @if(specialRequests?.invalid && specialRequests?.touched){
+                    <small>Request Details are required.</small>
+                }
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <!-- <div class="form-input" align="center"> -->
+        <div class="form-input">
+            <button type="submit" [disabled]="appointmentForm()!.invalid">Submit</button>
+        </div>
+
+    </fieldset>
+</form>

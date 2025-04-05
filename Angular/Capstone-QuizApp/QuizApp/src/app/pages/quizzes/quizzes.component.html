@@ -1,0 +1,71 @@
+<div class="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
+    <h2 class="text-2xl font-bold text-blue-600 mb-4">My Quizzes</h2>
+
+    <!-- Quizzes Taken -->
+    <h3 class="text-xl font-semibold text-gray-700 mt-6">Quizzes Taken</h3>
+    <div *ngIf="takenQuizCategories.length === 0" class="text-gray-500 italic">No quizzes taken yet.</div>
+
+    <div *ngFor="let category of takenQuizCategories" class="mt-4">
+        <h4 class="text-lg font-semibold text-gray-800">{{ category }}</h4>
+        <div *ngFor="let quiz of takenQuizzes[category]" class="p-4 mt-2 border rounded-lg bg-gray-50">
+            <div class="flex justify-between items-center">
+                <div>
+                    <p class="font-semibold text-gray-800">{{ quiz.questions[0].title || 'Quiz' }}</p>
+                    <p class="text-sm text-gray-600">Score: {{ quiz.score }}/{{ quiz.maxScore }}</p>
+                </div>
+                <button (click)="viewResult(quiz.id)" 
+                    class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">
+                    View Result
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quizzes Not Taken -->
+    <h3 class="text-xl font-semibold text-gray-700 mt-6">Available Quizzes</h3>
+    <div *ngIf="availableQuizCategories.length === 0" class="text-gray-500 italic">No available quizzes.</div>
+
+    <div *ngFor="let category of availableQuizCategories" class="mt-4">
+        <h4 class="text-lg font-semibold text-gray-800">{{ category }}</h4>
+        <div *ngFor="let quiz of availableQuizzes[category]" class="p-4 mt-2 border rounded-lg bg-gray-50">
+            <div class="flex justify-between items-center">
+                <div>
+                    <p class="font-semibold text-gray-800">{{ quiz.questions[0].title || 'Quiz' }}</p>
+                    <p class="text-sm text-gray-600">Max Score: {{ quiz.maxScore }}</p>
+                    <p class="text-sm text-gray-600">Time Limit: {{ quiz.maxTime }} seconds</p>
+                </div>
+                <button (click)="takeQuiz(quiz.id)" 
+                    class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                    Take Quiz
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Result Card (Hidden by default) -->
+    <div *ngIf="selectedQuizResult" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-lg">
+            <h3 class="text-lg font-bold text-gray-800">Quiz Result</h3>
+            <p class="text-gray-700">Category: {{ selectedQuizResult!.category }}</p>
+            <p class="text-gray-700">Score: {{ selectedQuizResult!.score }}/{{ selectedQuizResult!.maxScore }}</p>
+            <p class="text-gray-700">Submitted At: {{ selectedQuizResult!.submittedAt | date:'medium' }}</p>
+
+            <h4 class="mt-4 font-semibold text-gray-800">Your Answers:</h4>
+            <ul class="mt-2">
+                <li *ngFor="let answer of selectedQuizResult!.answers" class="p-2 border-b text-gray-700">
+                    <span class="font-semibold">Q{{ answer.questionId }}:</span>
+                    Selected Answer: {{ answer.selectedAnswer }} -
+                    <span [class.text-green-600]="answer.isCorrect" [class.text-red-600]="!answer.isCorrect">
+                        {{ answer.isCorrect | answerCorrectness }}
+                    </span>
+                </li>
+            </ul>
+
+            <button (click)="closeResult()" 
+                class="mt-4 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600">
+                Close
+            </button>
+        </div>
+    </div>
+
+</div>

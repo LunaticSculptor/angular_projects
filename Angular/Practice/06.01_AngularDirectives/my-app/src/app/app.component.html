@@ -1,0 +1,85 @@
+<main class="main">
+  <!-- Component Directive -->
+  <div>
+    <h1>Hello, {{ name }}!</h1>
+    <button (click)="changeName()">Change Name</button>
+  </div>
+
+  <!-- Attribute Directives -->
+  <div>
+    <h2>Dynamic Background Color Example</h2>
+    <label for="color">Choose a color:</label>
+    <input type="text" id="color" [(ngModel)]="selectedColor">
+    <button (click)="applyColor()">Apply Color</button>
+    <div [ngStyle]="{'background-color': selectedColor, 'width.px': '200', 'height.px': '200'}">
+      This div will have a dynamic background color.
+    </div>
+  </div>
+    <!-- NgClass -->
+    <div>
+      <h2>NgClass Example</h2>
+      <p [ngClass]="{'highlight': isHighlighted, 'italic': isItalic}">
+        This paragraph has dynamically applied styles.
+      </p>
+      <button (click)="toggleStyles()">Toggle Styles</button>
+    </div>
+
+  <!-- Structure Directives -->
+   <!-- ngIf -->
+   <div>
+    <h2>Conditional Message Example</h2>
+    <label>Show Message:</label>
+    <input type="checkbox" [(ngModel)]="showMessage">
+    <div *ngIf="showMessage">
+      This message will appear if the checkbox is checked.
+    </div>
+  </div> 
+  <!-- ngFor -->
+  <div>
+    <h2>NgFor Example</h2>
+    <ul>
+      <li *ngFor="let item of items">{{ item }}</li>
+    </ul>
+  </div>
+  <!-- @if and @else directives -->
+   <div>
+   <h1>Conditional Rendering with if and else</h1>
+   @if (loggedIn) {
+    <p>The user is logged in</p>
+   } @else {
+    <p>The user is not logged in</p>
+   }
+   <button (click)="toggleLogin()">Toggle Login</button>
+  </div>
+  <!-- @for and @empty directives -->
+   <div>
+   <h1>Looping with for and handling empty</h1>
+   @for(user of users; track user.id) {
+    <p>{{user.name}}</p>
+   }@empty {
+    <p>Empty List of Users</p>
+   }
+   <button (click)="addUser()">Add User</button>
+   <button (click)="clearUsers()">Clear Users</button>
+  </div>
+
+  <!-- Pipes -->
+  <div>
+    <h2>Date Pipe Example</h2>
+    <p>The current date and time is: {{ currentDate | date }}</p>
+    <p>short date: {{currentDate | date:'shortDate'}}</p>
+    <p>full date: {{currentDate | date:'fullDate'}}</p>
+    <p>Formatted date: {{currentDate | date:'M/dd/yyyy'}}</p>
+    <p>Hours and minutes: {{currentDate | date:'h:mm'}}</p>
+  </div>
+    <!-- Custom Pipes -->
+    <div>
+      <h2>Custom Pipe Example</h2>
+      <label for="search">Search:</label>
+      <input type="text" id="search" [(ngModel)]="searchTerm">
+      <ul>
+        <li *ngFor="let item of items1 | search: searchTerm">{{ item }}</li>
+      </ul>
+    </div>
+
+</main>

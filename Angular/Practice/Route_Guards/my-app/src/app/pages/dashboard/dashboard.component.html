@@ -1,0 +1,32 @@
+<div class="dashboard">
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="favicon.ico" alt="Angular Logo">
+            <h2>Dashboard</h2>
+        </div>
+
+        <nav>
+            <ul>
+                <li>
+                    <a routerLink="/dashboard/reports" routerLinkActive="active">Reports</a>
+                </li>
+                <li>
+                    <a routerLink="/dashboard/projects" routerLinkActive="active">Projects</a>
+                </li>
+                <li>
+                    <a routerLink="/settings" routerLinkActive="active">Settings</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <section class="main-content">
+        <header>
+            <h1>Welcome to the Dashboard</h1>
+            <button (click)="logout()">Logout</button>
+        </header>
+        <div class="content">
+            <router-outlet />
+        </div>
+    </section>
+</div>

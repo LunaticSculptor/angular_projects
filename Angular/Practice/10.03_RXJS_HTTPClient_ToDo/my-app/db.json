@@ -1,0 +1,18 @@
+{
+    "tasks": [
+        {
+            "id": 1,
+            "title": "Initial Task",
+            "description": "This is the initial task",
+            "priority": "High",
+            "status": "Not Started"
+        },
+        {
+            "id": 2,
+            "title": "Next Task",
+            "description": "This is some other task",
+            "priority": "Medium",
+            "status": "In Progress"
+        }
+    ]
+}

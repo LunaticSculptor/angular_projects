@@ -1,0 +1,87 @@
+<!-- <p>add-book works!</p> -->
+<form [formGroup]="addForm()!" (ngSubmit)="onSubmit()">
+    <h2>Add Book Form</h2>
+    <!-- Add Book Details -->
+    <fieldset formGroupName="bookInfo">
+        <legend>Add Book Details</legend>
+        
+        <!-- Book Title -->
+        <div class="form-input">
+        <label for="bookTitle">Book Title: </label>
+        <input type="text" id="bookTitle" formControlName="bookTitle">
+        <!-- Show Errors -->
+            @let book = addForm()!.get('bookInfo.bookTitle');
+            @if(book?.invalid && book?.touched){
+            <div class="error-text">
+                @if(book?.hasError('minlength')){
+                    <small>Book Title must have atleast 3 characters.</small>
+                }@else if(book?.hasError('maxlength')){
+                    <small>Book Title must have at most 50 characters.</small>
+                }@else {
+                    <small>Book Title is required.</small>
+                }
+            </div>
+            }
+        </div>
+
+        <!-- Book Author -->
+        <div class="form-input">
+            <label for="bookAuthor">Book Author: </label>
+            <input type="text" id="bookAuthor" formControlName="bookAuthor">
+            <!-- Show Errors -->
+            @let author = addForm()!.get('bookInfo.bookAuthor');
+            <div class="error-text">
+                @if(author?.invalid && author?.touched){
+                    @if(author?.hasError('minlength')){
+                        <small>Book Author must have atleast 3 characters.</small>
+                    }@else if(author?.hasError('maxlength')){
+                        <small>Book Author must have at most 50 characters.</small>
+                    }@else {
+                        <small>Book Author is required.</small>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Book ISBN -->
+        <div class="form-input">
+            <label for="bookISBN">Book ISBN: </label>
+            <input type="text" id="bookISBN" formControlName="bookISBN">
+            <!-- Show Errors -->
+            @let bookISBN = addForm()!.get('bookInfo.bookISBN');
+            <div class="error-text">
+                @if(bookISBN?.invalid && bookISBN?.touched){
+                    @if(bookISBN?.hasError('pattern')){
+                        <small>Enter a valid ISBN number.</small>
+                    }@else {
+                        <small>Book ISBN is required.</small>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Book Quantity -->
+        <div class="form-input">
+            <label for="bookQuantity">Book Quantity: </label>
+            <input type="number" id="bookQuantity" formControlName="bookQuantity">
+            <!-- Show Errors -->
+            @let bookQuantity = addForm()!.get('bookInfo.bookQuantity');
+            <div class="error-text">
+                @if(bookQuantity?.invalid && bookQuantity?.touched){
+                    @if(bookQuantity?.hasError('invalidQuantity')){
+                        <small>Quantity cannot be negative.</small>
+                    }@else {
+                        <small>Book Quantity is required.</small>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <!-- <div class="form-input" align="center"> -->
+        <div class="form-input">
+            <button type="submit" [disabled]="addForm()!.invalid">Submit</button>
+        </div>
+
+    </fieldset>
+</form>

@@ -1,0 +1,23 @@
+<!-- <input type="text" placeholder="Enter your name" [(ngModel)]="username">
+<p>Hello {{username}}</p> -->
+
+<form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" [(ngModel)]="user.name" #name="ngModel" minlength="6" required>
+    @if(profileForm.submitted && !name.valid){
+        <div class="error">Name is Required and must have atleast 6 characters</div>
+    }
+    <!-- Can be done without identifier-->
+    <!-- @if(profileForm.submitted && !profileForm.form.controls['name'].valid){
+        <div class="error">Name is Required and must have atleast 6 characters</div>
+    } -->
+
+
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" [(ngModel)]="user.email" #email1="ngModel" required>
+    @if(profileForm.submitted && !email1.valid){
+        <div class="error">Email must be valid</div>
+    }
+
+    <button type="submit">Submit</button>
+</form>

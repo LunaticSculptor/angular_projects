@@ -1,0 +1,198 @@
+<form [formGroup]="registerForm()!" (ngSubmit)="onSubmit()">
+
+    <h2>Registration Form</h2>
+
+    <!--Personal Details -->
+    <fieldset formGroupName="personal">
+        <legend>Personal Details</legend>
+
+        <!-- Username -->
+         <div class="form-input">
+            <label for="username">Username: </label>
+            <input type="text" id="username" formControlName="username">
+
+            <!-- Show Errors -->
+            @let username = registerForm()!.get('personal.username');
+            @if(username?.invalid && username?.touched){
+                <div class="error-text">
+                    <small>
+                        @if(username?.hasError('minlength')){
+                            Minimum 3 characters needed.
+                        }@else if (username?.hasError('maxlength')) {
+                            Maximum 50 characters allowed.
+                        }@else if (username?.hasError('usernameTaken')) {
+                            Username is already taken.
+                        }@else{
+                            Username is required.
+                        }
+                    </small>
+                </div>
+            }
+         </div>
+
+        <!-- Email -->
+        <div class="form-input">
+            <label for="email">Email: </label>
+            <input type="text" id="email" formControlName="email">
+
+            <!-- Show Errors -->
+            @let email = registerForm()!.get('personal.email');
+            @if(email?.invalid && email?.touched){
+                <div class="error-text">
+                    <small>
+                        @if(email?.hasError('email')){
+                            Enter a valid email.
+                        }@else{
+                            Email is required.
+                        }
+                    </small>
+                </div>
+            }
+        </div>
+
+        <!-- Password -->
+        <div class="form-input">
+            <label for="password">Password: </label>
+            <input type="password" id="password" formControlName="password">
+
+            <!-- Show Errors -->
+            @let password = registerForm()!.get('personal.password');
+            @if(password?.invalid && password?.touched){
+                <div class="error-text">
+                    <small>
+                        @if(password?.hasError('minlength')){
+                            Enter a valid password with atleast 8 characters.
+                        }@else{
+                            Password is required.
+                        }
+                    </small>
+                </div>
+            }
+        </div>
+
+    </fieldset>
+
+    <!-- Address Details -->
+    <fieldset formGroupName="address">
+        <legend>Address Details</legend>
+
+        <!-- Street -->
+        <div class="form-input">
+            <label for="street">Street: </label>
+            <input type="text" id="street" formControlName="street">
+
+            <!-- Show Errors -->
+            @let street = registerForm()!.get('address.street');
+            @if(street?.invalid && street?.touched){
+                <div class="error-text">
+                    <small>
+                        Street is required.
+                    </small>
+                </div>
+            }
+        </div>
+
+        <!-- City -->
+        <div class="form-input">
+            <label for="city">City: </label>
+            <input type="text" id="city" formControlName="city">
+
+            <!-- Show Errors -->
+            @let city = registerForm()!.get('address.city');
+            @if(city?.invalid && city?.touched){
+                <div class="error-text">
+                    <small>
+                        City is required.
+                    </small>
+                </div>
+            }
+        </div>
+
+        <!-- Zipcode -->
+        <div class="form-input">
+            <label for="zipCode">Zipcode: </label>
+            <input type="number" id="zipCode" formControlName="zipCode">
+
+            <!-- Show Errors -->
+            @let zipCode = registerForm()!.get('address.zipCode');
+            @if(zipCode?.invalid && zipCode?.touched){
+                <div class="error-text">
+                    <small>
+                        @if(zipCode?.hasError('pattern')){
+                            Enter a valid zipcode of 6 numbers.
+                        }@else{
+                            Zipcode is required.
+                        }
+                    </small>
+                </div>
+            }
+        </div>
+
+    </fieldset>
+
+    <!-- Dynamic Phone Numbers -->
+    <fieldset formArrayName="phoneNumbers">
+        <legend>Phone Numbers</legend>
+
+        @for (phone of phoneNumbers.controls; track $index) {
+            <div [formGroupName]="$index" class="phoneNo">
+                <input class="phoneInput" type="number" placeholder="Phone Number" formControlName="number">
+                <select formControlName="type">
+                    <option value="home">Home</option>
+                    <option value="work">Work</option>
+                    <option value="mobile">Mobile</option>
+                </select>
+                <button type="button" (click)="removePhoneNumber($index)">Remove</button>
+                <div>
+                    <!-- Show Errors -->
+                    @let phoneNumber = phone.get('number');
+                    @if(phoneNumber?.invalid && phoneNumber?.touched){
+                        <div class="error-text">
+                            <small>
+                                @if(phoneNumber?.hasError('pattern')){
+                                    Enter a valid phone number of 10 digits.
+                                }@else{
+                                    Phone Number is required.
+                                }
+                            </small>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        <button type="button" (click)="addPhoneNumber()">Add Phone Number</button>
+    </fieldset>
+
+    <!-- Terms & Conditions -->
+     <div class="form-input">
+        <input type="checkbox" id="terms" formControlName="terms">
+        <label for="terms">Agree to Terms & Conditions</label>
+
+        <!-- @let terms = registerForm()!.get('terms');
+        @if(terms?.touched) {
+            <div class="error-text">
+                @if(registerForm()!.get('terms')?.hasError('requiredTrue')){
+                    <small>
+                        You must accept the terms & conditions.
+                    </small>
+                }
+            </div>
+        } -->
+        @let terms = registerForm()!.get('terms');
+        @if(terms?.invalid && terms?.touched) {
+            <div class="error-text">
+                <small>You must accept the terms & conditions.</small>
+            </div>
+        }
+     </div>
+
+    <!-- Submit Button -->
+    <!-- <div class="form-input" align="center"> -->
+    <div class="form-input">
+        <button type="submit" [disabled]="registerForm()!.invalid">Submit</button>
+    </div>
+
+    <!-- Debugging -->
+    <pre>{{registerForm()!.value | json}}</pre>
+
+</form>

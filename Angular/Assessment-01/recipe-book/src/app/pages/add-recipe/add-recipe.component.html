@@ -1,0 +1,281 @@
+<!-- <p>add-recipe works!</p> -->
+<form [formGroup]="addForm()!" (ngSubmit)="onSubmit()">
+    <h2>Add Recipe Form</h2>
+
+    <!-- Recipe Details -->
+    <fieldset formGroupName="recipeInfo">
+        <legend>Add Recipe Details</legend>
+
+        <!-- Title -->
+        <div class="form-input">
+        <label for="recipeTitle">Recipe Title: </label>
+        <input type="text" id="recipeTitle" formControlName="recipeTitle">
+        <!-- Show Errors -->
+            @let title = addForm()!.get('recipeInfo.recipeTitle');
+            @if(title?.invalid && title?.touched) {
+            <div class="error-text">
+                @if(title?.hasError('minlength')){
+                    <small>Recipe Title must have atleast 3 characters.</small>
+                }@else if(title?.hasError('maxlength')){
+                    <small>Recipe Title must have at most 50 characters.</small>
+                }@else {
+                    <small>Recipe Title is required.</small>
+                }
+            </div>
+            }
+        </div>
+
+        <!-- Category -->
+        <!-- Category Dropdown -->
+        <div class="form-input">
+            <label for="receipeCategory">Recipe Category: </label>
+            <select id="receipeCategory" formControlName="receipeCategory">
+                <option value="" disabled="true">Select Category</option>
+                @for(category of categories(); track category.id) {
+                    <option [value]="category.category">{{ category.category }}</option>
+                }
+            </select>
+            @let category = addForm()!.get('recipeInfo.receipeCategory');
+            @if(category?.invalid && category?.touched) {
+                <div class="error-text">
+                    <small>Recipe Category is required.</small>
+                </div>
+            }
+        </div>
+
+        <!-- Description -->
+        <div class="form-input">
+            <label for="receipeDescription">Recipe Description: </label>
+            <input type="text" id="receipeDescription" formControlName="receipeDescription">
+            <!-- Show Errors -->
+            @let description = addForm()!.get('recipeInfo.receipeDescription');
+            @if(description?.invalid && description?.touched) {
+               <div class="error-text">
+                <small>Recipe Description is required.</small>
+               </div>
+            }
+        </div>
+
+        <!-- Image Url -->
+        <div class="form-input">
+            <label for="imageUrl">Image URL: </label>
+            <input type="text" id="imageUrl" formControlName="imageUrl">
+            <!-- Show Errors -->
+            @let imageUrl = addForm()!.get('recipeInfo.imageUrl');
+            @if(imageUrl?.invalid && imageUrl?.touched) {
+               <div class="error-text">
+                <small>Image URL is required.</small>
+               </div>
+            }
+        </div>
+
+        <!-- Servings -->
+        <div class="form-input">
+            <label for="servings">Servings: </label>
+            <input type="number" id="servings" formControlName="servings">
+            <!-- Show Errors -->
+            @let servings = addForm()!.get('recipeInfo.servings');
+            <div class="error-text">
+                @if(servings?.invalid && servings?.touched){
+                    @if(servings?.hasError('invalidQuantity')){
+                        <small>Servings cannot be negative.</small>
+                    }@else {
+                        <small>Servings is required field.</small>
+                    }
+                }
+            </div>
+        </div>
+
+    </fieldset>
+
+    <!-- Dynamic Ingredients -->
+    <fieldset formArrayName="ingredients">
+        <legend>Add Ingredients</legend>
+        @for (task of ingredients.controls; track $index){
+            <div [formGroupName]="$index" class="phoneNo">
+                <input class="form-input" type="text" placeholder="Name" formControlName="name">
+                <!-- Show Errors -->
+                @let ing = task.get('name');
+                @if(ing?.invalid && ing?.touched){
+                    <div class="error-text">
+                        <small>
+                            Name is required.
+                        </small>
+                    </div>
+                }
+                <input class="form-input" type="number" placeholder="Quantity" formControlName="quantity">
+                <!-- Show Errors -->
+                @let qty = task.get('quantity');
+                @if(qty?.invalid && qty?.touched){
+                    <div class="error-text">
+                        @if(qty?.hasError('invalidQuantity')){
+                            <small>
+                                Quantity cannot be negative.
+                            </small>
+                        }@else {
+                            <small>
+                                Quantity is required.
+                            </small>
+                        }
+                    </div>
+                }
+                <input class="form-input" type="text" placeholder="Notes" formControlName="notes">
+                <!-- Show Errors -->
+                @let note = task.get('notes');
+                @if(note?.invalid && note?.touched){
+                    <div class="error-text">
+                        <small>
+                            Notes is required.
+                        </small>
+                    </div>
+                }
+                <button type="button" (click)="removeIngredient($index)">Remove</button>
+            </div>
+        }
+        <button type="button" (click)="addIngredient()">Add Ingredient</button>
+    </fieldset>
+
+    <!-- Dynamic Instructions -->
+    <fieldset formArrayName="instructions">
+        <legend>Add Instructions</legend>
+        @for (task of instructions.controls; track $index){
+            <div [formGroupName]="$index" class="phoneNo">
+                <input class="form-input" type="text" placeholder="Instructions" formControlName="task">
+                <!-- Show Errors -->
+                @let toDo = task.get('task');
+                @if(toDo?.invalid && toDo?.touched){
+                    <div class="error-text">
+                        <small>
+                            Instruction is required.
+                        </small>
+                    </div>
+                }
+                <button type="button" (click)="removeInstruction($index)">Remove</button>
+            </div>
+        }
+        <button type="button" (click)="addInstructions()">Add Instructions</button>
+    </fieldset>
+
+    <!-- Chef Details -->
+    <fieldset formGroupName="chefInfo">
+        <legend>Add Chef Details</legend>
+
+        <!-- Name -->
+        <div class="form-input">
+            <label for="chefName">Name: </label>
+            <input type="text" id="chefName" formControlName="chefName">
+            <!-- Show Errors -->
+                @let chefName = addForm()!.get('chefInfo.chefName');
+                @if(chefName?.invalid && chefName?.touched) {
+                <div class="error-text">
+                    @if(chefName?.hasError('minlength')){
+                        <small>Chef Name must have atleast 3 characters.</small>
+                    }@else if(chefName?.hasError('maxlength')){
+                        <small>Chef Name must have at most 50 characters.</small>
+                    }@else {
+                        <small>Chef Name is required.</small>
+                    }
+                </div>
+                }
+            </div>
+
+        <!-- Chef Email -->
+        <div class="form-input">
+            <label for="chefEmail">Email: </label>
+            <input type="text" id="chefEmail" formControlName="chefEmail">
+            <!-- Show Errors -->
+            @let email = addForm()!.get('chefInfo.chefEmail');
+            @if(email?.invalid && email?.touched){
+                <div class="error-text">
+                    <small>
+                        @if(email?.hasError('email')){
+                            Enter a valid email.
+                        }@else{
+                            Email is required.
+                        }
+                    </small>
+                </div>
+            }
+        </div>
+
+        <!-- Chef Mobile -->
+        <div class="form-input">
+            <label for="chefMobile">Mobile: </label>
+            <input type="number" id="chefMobile" formControlName="chefMobile">
+            <!-- Show Errors -->
+            @let phoneNumber = addForm()!.get('chefInfo.chefMobile');
+            @if(phoneNumber?.invalid && phoneNumber?.touched){
+                <div class="error-text">
+                    <small>
+                        @if(phoneNumber?.hasError('pattern')){
+                            Enter a valid mobile number of 10 digits.
+                        }@else{
+                            Mobile Number is required.
+                        }
+                    </small>
+                </div>
+            }
+        </div>
+
+        <!-- Chef Experience -->
+        <div class="form-input">
+            <label for="chefExp">Years of Experience: </label>
+            <input type="number" id="chefExp" formControlName="chefExp">
+            <!-- Show Errors -->
+            @let exp = addForm()!.get('chefInfo.chefExp');
+            <div class="error-text">
+                @if(exp?.invalid && exp?.touched){
+                    @if(exp?.hasError('invalidQuantity')){
+                        <small>Years of Experience cannot be negative.</small>
+                    }@else {
+                        <small>Years of Experience is required field.</small>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Chef DOB -->
+        <div class="form-input">
+            <label for="chefDob">Date of Birth: </label>
+            <input type="date" id="chefDob" formControlName="chefDob">
+            <!-- Show Errors -->
+            @let date = addForm()!.get('chefInfo.chefDob');
+            <div class="error-text">
+                @if(date?.invalid && date?.touched){
+                    @if(date?.hasError('futureDate')){
+                        <small>Date of Birth cannot be in future.</small>
+                    }@else {
+                        <small>Date of Birth is required.</small>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Chef Country -->
+        <!-- Country Dropdown -->
+        <div class="form-input">
+            <label for="chefCountry">Chef Country: </label>
+            <select id="chefCountry" formControlName="chefCountry">
+                <option value="" disabled="true">Select Country</option>
+                @for(country of countries(); track country.id) {
+                    <option [value]="country.country">{{ country.country }}</option>
+                }
+            </select>
+            @let chefCountry = addForm()!.get('chefInfo.chefCountry');
+            @if(chefCountry?.invalid && chefCountry?.touched) {
+                <div class="error-text">
+                    <small>Chef Country is required.</small>
+                </div>
+            }
+        </div>
+        
+    </fieldset>
+
+    <!-- Submit Button -->
+    <!-- <div class="form-input" align="center"> -->
+    <div class="form-input">
+        <button type="submit" [disabled]="addForm()!.invalid">Submit</button>
+        <!-- <button type="submit">Submit</button> -->
+    </div>
+
+</form>

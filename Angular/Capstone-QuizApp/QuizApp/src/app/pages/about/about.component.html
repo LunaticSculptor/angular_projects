@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Quiz Application Documentation</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+        h1, h2, h3 { color: #333; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; }
+        .container { max-width: 900px; margin: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Advanced Quiz Application - Documentation</h1>
+        
+        <h2>Project Overview</h2>
+        <p>The Advanced Quiz Application is a full-fledged Angular application that allows users to take quizzes, view results, and access a leaderboard. Admin users can create quizzes.</p>
+        
+        <h2>Key Features</h2>
+        <ul>
+            <li>User authentication (login/logout)</li>
+            <li>Role-based access (admin & users)</li>
+            <li>Quiz creation (admin-only)</li>
+            <li>Quiz taking functionality</li>
+            <li>Leaderboard tracking</li>
+            <li>JSON Server as a backend</li>
+            <li>Angular Router for navigation</li>
+            <li>RxJS for state management & async operations</li>
+        </ul>
+        
+        <!-- <h2>Project Structure</h2> -->
+        <!-- <pre>
+        src/
+        ├── app/
+        │   ├── components/
+        │   │   ├── header/
+        │   │   ├── quiz-list/
+        │   │   ├── quiz-details/
+        │   │   ├── leaderboard/
+        │   ├── services/
+        │   │   ├── auth.service.ts
+        │   │   ├── quiz.service.ts
+        │   │   ├── quiz-response.service.ts
+        │   ├── guards/
+        │   │   ├── quiz-access.guard.ts
+        │   ├── app-routing.module.ts
+        │   ├── app.component.ts
+        │   ├── app.module.ts
+        ├── assets/
+        ├── environments/
+        </pre> -->
+        
+        <h2>Authentication</h2>
+        <p>Authentication is handled using the <code>AuthService</code>. User data is stored in <code>localStorage</code> for persistence.</p>
+        
+        <h2>Routing</h2>
+        <p>The application uses Angular Router with guards to protect quiz access and ensure only admins can create quizzes.</p>
+        
+        <h2>Quiz Management</h2>
+        <p>Users can take quizzes, and once completed, responses are stored in JSON Server to prevent retaking the same quiz.</p>
+        
+        <h2>Leaderboard</h2>
+        <p>The leaderboard ranks users based on their quiz performance. We have global leaderboard as well as leaderboard for each category</p>
+        
+        <!-- <h2>Future Improvements</h2>
+        <ul>
+            <li>Enhancing UI with Angular Material</li>
+            <li>Implementing JWT-based authentication</li>
+            <li>Adding real-time leaderboard updates</li>
+        </ul> -->
+    </div>
+</body>
+</html>

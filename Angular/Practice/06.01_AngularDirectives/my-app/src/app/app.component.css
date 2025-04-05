@@ -1,0 +1,7 @@
+/* For Attribute Directives: NgClass Example */
+.highlight {
+    background-color: yellow;
+  }
+  .italic {
+    font-style: italic;
+  }

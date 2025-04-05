@@ -1,0 +1,24 @@
+<main class="main">
+  <!-- Data Binding: Interpolation/ One way -->
+  <h1>{{title}}</h1>
+  <p>User Name: {{user.name}}</p>
+  <p>User Age: {{user.age}}</p>
+
+  <!-- Data Binding: Property -->
+  <img [src]="imageUrl" alt="Example Image">
+  <button [disabled]="isDisabled">Click me</button>
+
+  <!-- Data Binding: Event -->
+  <button (click)="doSomething()">Event Button</button>
+  <input type="text" (input)="handleInput($event)">
+
+  <!-- Data Binding: Two way -->
+  <input type="text" [(ngModel)]="name">
+  <h1>Hello Dynamic {{name}}</h1>
+  <!-- With Form Control -->
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" [formControl]="name1">
+    <p>Your name is: {{ name1.value }}</p>
+    </div>
+</main>

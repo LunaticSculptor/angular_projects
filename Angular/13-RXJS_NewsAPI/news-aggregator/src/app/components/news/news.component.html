@@ -1,0 +1,17 @@
+<!-- <p>News Component Works</p> -->
+
+<div *ngIf="news$() as newsList; else loading">
+  <div *ngFor="let news of newsList" class="news-item">
+    <img [src]="news.urlToImage || '/placeholder.jpg'" loading="lazy" alt="News Image" />
+    <div>
+      <h2>{{ news.title }}</h2>
+      <p>{{ news.description }}</p>
+      <a [href]="news.url" target="_blank">Read More</a>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Loading news...</p>
+</ng-template>
+  

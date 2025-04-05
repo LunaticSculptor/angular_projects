@@ -1,0 +1,47 @@
+<form [formGroup]="returnForm()!" (ngSubmit)="onSubmit()">
+    <h2>Return Book Form</h2>
+    <fieldset formGroupName="returnInfo">
+        <legend>Return Book</legend>
+        
+       <!-- Book Title -->
+        <div class="form-input">
+            <label for="bookTitle">Book Title: </label>
+            <select id="bookTitle" formControlName="bookTitle">
+                <option value="" disabled selected>Select Title</option>
+                @for (book of booksList(); track $index) {
+                    <option [value]="book.bookTitle">{{ book.bookTitle }}</option>
+                }
+            </select>
+            <div class="error-text">
+                @let book = returnForm()!.get('returnInfo.bookTitle');
+                @if(book?.invalid && book?.touched){
+                    <small>Book Title is required.</small>
+                }
+            </div>
+        </div>
+
+        <!-- Book Return Date -->
+        <div class="form-input">
+            <label for="bookReturnDate">Return Date: </label>
+            <input type="date" id="bookReturnDate" formControlName="bookReturnDate">
+            <div class="error-text">
+                @let returnDate = returnForm()!.get('returnInfo.bookReturnDate');
+                @if(returnDate?.invalid && returnDate?.touched){
+                    @if(returnDate?.hasError('futureDate')){
+                        <small>Return date cannot be in the future.</small>
+                    } @else if(returnDate?.hasError('invalidReturnDate')) {
+                        <small>Return date must be on or after the checkout date.</small>
+                    } @else {
+                        <small>Return Date is required.</small>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-input">
+            <button type="submit" [disabled]="returnForm()!.invalid">Submit</button>
+        </div>
+
+    </fieldset>
+</form>

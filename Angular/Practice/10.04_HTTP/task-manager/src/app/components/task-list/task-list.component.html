@@ -1,0 +1,7 @@
+<input type="text" [(ngModel)]="searchText" placeholder="Search tasks..." (input)="searchTasks()">
+<ul>
+  <li *ngFor="let task of filteredTasks">
+    <strong>{{ task.title }}</strong> - {{ task.priority }} - {{ task.status }}
+    <button (click)="deleteTask(task.id!)">Delete</button>
+  </li>
+</ul>

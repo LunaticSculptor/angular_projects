@@ -1,0 +1,155 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <h2>User Registration Form</h2>
+
+    <!-- Name Field -->
+     <div class="form-input">
+        <label for="name">Name: </label>
+        <input 
+            type="text" 
+            formControlName="name" 
+            id="name"
+        >
+        @let name = registerForm.get('name');
+        @if(name?.invalid && name?.touched){
+            <div class="error-text">
+                <small>
+                    @if(name?.errors!['required']){
+                        Name is required.
+                    }@else if(name?.errors!['minlength']){
+                        Minimum 3 characters needed.
+                    }@else if (name?.errors!['maxlength']) {
+                        Maximum 50 characters allowed.
+                    }@else {
+                        Name is required.
+                    }
+                </small>
+            </div>
+        }
+     </div>
+
+    <!-- Email Field -->
+    <div class="form-input">
+        <label for="email">Email: </label>
+        <input 
+            type="text" 
+            formControlName="email" 
+            id="email"
+        >
+        @let email = registerForm.get('email');
+        @if(email?.invalid && email?.touched){
+            <div class="error-text">
+                <small>
+                    @if(email?.errors!['email']){
+                        Enter a vaild email.
+                    }@else if(email?.errors!['pattern']){
+                        Enter a proper email.
+                    }@else {
+                        Email is required.
+                    }
+                </small>
+            </div>
+        }
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-input">
+        <label for="password">Password: </label>
+        <input 
+            type="password" 
+            formControlName="password" 
+            id="password"
+        >
+        @let password = registerForm.get('password');
+        <div class="error-text">
+            @if(password?.invalid && password?.touched){
+                <div>
+                    <small>
+                        @if(password?.errors!['minlength']){
+                            Minimum 8 characters required.
+                        }@else {
+                            Password is required.
+                        }
+                    </small>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Age Field -->
+    <div class="form-input">
+        <label for="age">Age: </label>
+        <input 
+            type="number" 
+            formControlName="age" 
+            id="age"
+        >
+        @let age = registerForm.get('age');
+        <div class="error-text">
+            @if(age?.invalid && age?.touched){
+                <div>
+                    <small>
+                        @if(age?.errors!['min']){
+                            Minimum age is 18.
+                        }@else if(age?.errors!['max']){
+                            Maximum age is 100.
+                        }@else {
+                            Age is required.
+                        }
+                    </small>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Gender Field -->
+    <div class="form-input">
+        <label for="gender">Gender: </label>
+        <select  
+            formControlName="gender" 
+            id="gender"
+        >
+        @let gender = registerForm.get('gender');
+        <option value="" disabled>Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+        </select>
+        <div class="error-text">
+            @if(gender?.invalid && gender?.touched){
+                <div>
+                    <small>
+                        Gender is required.
+                    </small>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Terms Checkbox -->
+    <div class="form-input">
+        <input type="checkbox" id="terms" formControlName="terms">
+        <label for="terms">I agree to the terms & conditions.</label>
+        @let terms = registerForm.get('terms');
+        <div class="error-text">
+            @if(terms?.invalid && terms?.touched){
+                <div>
+                    <small>
+                        You must accept the terms and conditions.
+                    </small>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="form-input">
+        <!-- <button type="submit" [disabled]="registerForm.invalid">Register</button> -->
+        <button type="submit">Register</button>
+        <button type="button" (click)="onReset()">Reset</button>
+    </div>
+
+    <!-- Debugging -->
+    <pre>{{registerForm.value | json}}</pre>
+
+</form>

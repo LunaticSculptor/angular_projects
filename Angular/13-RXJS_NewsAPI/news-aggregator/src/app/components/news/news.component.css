@@ -1,0 +1,28 @@
+.news-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .news-item img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .news-item h2 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  
+  .news-item p {
+    color: gray;
+  }
+  
+  .news-item a {
+    color: blue;
+    text-decoration: none;
+  }
+  

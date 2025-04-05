@@ -1,0 +1,34 @@
+<!-- @if(operation === null){ -->
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="form-input">
+      <label for="operation">Select Operation You Want to Perform: </label>
+      <select name="operation" id="operation" [(ngModel)]="operation" required>
+        <option value="" disabled>Select Operation</option>
+        <option value="addBook">Add New Book</option>
+        <option value="checkoutBook">Checkout Book</option>
+        <option value="returnBook">Return Book</option>
+        <option value="updateInventory">Update Inventory</option>
+      </select>
+      @if(form.invalid && form.touched){
+        <div class="error-text">
+          <small>You must select an operation!</small>
+        </div>
+      }
+      <!-- <div>
+        <button type="submit" [disabled]="form.invalid">Submit</button>
+      </div> -->
+    </div>
+  </form>
+<!-- } -->
+@if(operation === 'addBook') {
+  <app-add-book></app-add-book>
+}
+@else if(operation === 'checkoutBook'){
+  <app-checkout-book></app-checkout-book>
+}
+@else if(operation === 'returnBook'){
+  <app-return-book></app-return-book>
+}
+@else if(operation === 'updateInventory'){
+  <app-update-inventory></app-update-inventory>
+}

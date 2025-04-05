@@ -1,0 +1,14 @@
+<div class="weather-container">
+    <h2>Weather in {{ city }}</h2>
+    
+    <div *ngIf="loading">Loading weather data...</div>
+    
+    <div *ngIf="error" class="error">{{ error }}</div>
+  
+    <div *ngIf="weatherData">
+      <p>Temperature: {{ weatherData.temperature }}°C</p>
+      <p>Humidity: {{ weatherData.humidity }}%</p>
+      <p>Condition: {{ weatherData.condition }}</p>
+    </div>
+  </div>
+  

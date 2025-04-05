@@ -1,0 +1,63 @@
+<!-- <p>parent works!</p> -->
+
+<!-- For @Input -->
+<!-- <app-child [childMessage]="parentMessage"></app-child> -->
+<!-- For @Output -->
+<!-- Received Message from Child: {{ receivedMessage }} -->
+<!-- <app-child (messageEvent)="receiveMessage($event)"></app-child> -->
+
+<!-- To avoid seeing the button twice, use app-child only once-->
+ <!-- Single child instance handles both @Input and @Output -->
+
+<!-- <app-child [childMessage]="parentMessage" (messageEvent)="receiveMessage($event)"></app-child>
+<p>Received Message from Child: {{ receivedMessage }}</p> -->
+
+<!-- To use @ViewChild or @ViewChildren app-child must be present atleast once-->
+<!-- While using @ViewChildren We include multiple instances of the child component selector (<app-child></app-child>) in the parent component's template. Angular will automatically render multiple instances of the child component within the parent component's view. -->
+
+<!-- Content Projection -->
+  <!-- <app-child>
+    <h2>Content Projected from Parent</h2>
+    <p>This is some additional content.</p>
+  </app-child> -->
+
+<!-- Lifecycle hooks -->
+ <!-- Constructor, ngOnChanges -->
+ <!-- <h1>ngOnChanges Example</h1>
+ <app-child [data]="arbitaryData"></app-child> -->
+
+ <!-- ngOnInit -->
+ <!-- <h1>ngOnInit Example</h1>
+ <app-child [data]="arbitaryData"></app-child> -->
+
+ <!-- ngDoCheck -->
+ <!-- <h1>ngDoCheck Example</h1>
+ <h2>Current Time</h2>
+ <p>{{ currentTime }}</p> -->
+  <!-- <h1>{{ user.name }} - Age: {{ user.age }}</h1>
+  <button (click)="updateAge()">Increase Age</button> -->
+
+<!-- ngAfterContentInit -->
+ <!-- <h1>ngAfterContentInit Example</h1>
+ <app-child><p #projectedContent>This is projected content!</p></app-child> -->
+
+ <!-- ngAfterContentChecked -->
+ <!-- <app-child>
+  <p #projectedContent>This is projected content!</p>
+</app-child>
+<button (click)="changeContent()">Change Content</button> -->
+
+<!-- ngAfterViewInit -->
+<!-- <h1>ngAfterViewInit Example</h1>
+<app-child></app-child> -->
+
+<!-- ngAfterViewChecked -->
+<!-- <h1>ngAfterViewChecked Example</h1>
+<div *ngIf="message">{{ message }}</div><br>
+<button (click)="updateMessage()"> Change Message</button> -->
+
+<!-- ngOnDestroy -->
+<h1>ngOnDestroy Example</h1>
+<button (click)="toggleDestroy()">Child DESTROY</button> <br>
+<app-child *ngIf="destroy"></app-child>
+

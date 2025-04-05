@@ -1,0 +1,32 @@
+<div *ngIf="recipe(); else loading">
+    <h2>{{ recipe()?.title }}</h2>
+    <img [src]="recipe()?.imageUrl" alt="Recipe Image">
+    <p><strong>Category:</strong> {{ recipe()?.category }}</p>
+    <p><strong>Description:</strong> {{ recipe()?.description }}</p>
+    <p><strong>Servings:</strong> {{ recipe()?.servings }}</p>
+
+    <h3>Ingredients:</h3>
+    <ul>
+      <li *ngFor="let ing of recipe()?.ingredients">
+        {{ ing.name }} - {{ ing.quantity }} ({{ ing.notes }})
+      </li>
+    </ul>
+
+    <h3>Steps:</h3>
+    <ul>
+      <li *ngFor="let step of recipe()?.steps">
+        {{ step.step }}
+      </li>
+    </ul>
+
+    <h3>Chef Details:</h3>
+    <p><strong>Name:</strong> {{ recipe()?.chefDetails.name }}</p>
+    <p><strong>Email:</strong> {{ recipe()?.chefDetails.contact.email }}</p>
+    <p><strong>Mobile:</strong> {{ recipe()?.chefDetails.contact.mobile }}</p>
+    <p><strong>Country:</strong> {{ recipe()?.chefDetails.contact.country }}</p>
+
+    <button (click)="goBack()">Back</button>
+    <button (click)="editRecipe()">Edit</button>
+    <button (click)="deleteRecipe()">Delete</button>
+  </div>
+  <ng-template #loading><p>Loading recipe...</p></ng-template>

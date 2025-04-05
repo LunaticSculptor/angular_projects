@@ -1,0 +1,11 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Complete Angular Assignment",
+      "description": "Implement CRUD with sorting and filtering",
+      "priority": "High",
+      "status": "In Progress"
+    }
+  ]
+}

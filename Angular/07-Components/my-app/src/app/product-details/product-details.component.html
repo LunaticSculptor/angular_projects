@@ -1,0 +1,7 @@
+<div *ngIf="product">
+    <h1>Product Details Component</h1>
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <p>Price: {{ product.price | currency:'INR' }}</p>
+    <p>Status: {{ product.available ? 'Available' : 'Out of Stock' }}</p>
+</div>

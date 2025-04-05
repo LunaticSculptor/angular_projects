@@ -1,0 +1,35 @@
+<div class="dashboard">
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="favicon.ico" alt="Angular Logo">
+            <h2>Dashboard</h2>
+        </div>
+
+        <nav>
+            <ul>
+                <li>
+                    <a routerLink="/dashboard" routerLinkActive="active">Home</a>
+                </li>
+                <li>
+                    <a routerLink="/dashboard/book-appointment" routerLinkActive="active">Book Appointment</a>
+                </li>
+                <li>
+                    <a routerLink="/dashboard/appointment-history" routerLinkActive="active">Appointment History</a>
+                </li>
+                <li>
+                    <a routerLink="/dashboard/admin-interface" routerLinkActive="active">Admin Interface</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <section class="main-content">
+        <header>
+            <h1>Welcome to the Hospital</h1>
+            <button (click)="logout()">Logout</button>
+        </header>
+        <div class="content">
+            <router-outlet></router-outlet>  <!-- This will load the child components -->
+        </div>
+    </section>
+</div>

@@ -1,0 +1,40 @@
+<h2>Admin Dashboard</h2>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User</th>
+      <th>Date</th>
+      <th>Service Type</th>
+      <th>Patient Details</th>
+      <th>Special Requests</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let appointment of appointments()">
+      <td>{{ appointment.id }}</td>
+      <td>{{ appointment.userId }}</td>
+      <td>{{ appointment.date }}</td>
+      <td>{{ appointment.serviceType }}</td>
+      <td>{{ appointment.patientDetails }}</td>
+      <td>{{ appointment.specialRequests }}</td>
+      <td>
+        <button (click)="editAppointment(appointment)">Edit</button>
+        <button (click)="deleteAppointment(appointment.id)">Cancel</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Edit Appointment Modal -->
+<div *ngIf="editingAppointment()">
+  <h3>Edit Appointment</h3>
+  <label>Date: <input type="datetime-local" [(ngModel)]="editingAppointment().date"></label><br>
+  <label>Service Type: <input type="text" [(ngModel)]="editingAppointment().serviceType"></label><br>
+  <label>Patient Details: <input type="text" [(ngModel)]="editingAppointment().patientDetails"></label><br>
+  <label>Special Requests: <input type="text" [(ngModel)]="editingAppointment().specialRequests"></label><br>
+  <button (click)="saveChanges()">Save</button>
+  <button (click)="cancelEdit()">Cancel</button>
+</div>

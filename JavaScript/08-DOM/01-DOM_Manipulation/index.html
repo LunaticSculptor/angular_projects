@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shape Changer</title>
+    <style>
+        .shape-container {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+        }
+
+        .shape {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        .circle {
+            border-radius: 50%;
+        }
+
+        .square {
+            /* Default square */
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            background-color: transparent;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="shape-container">
+        <div id="shape" class="shape square"></div>
+    </div>
+
+    <button id="change-shape">Change Shape</button>
+    <button id="change-color">Change Color</button>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+<h1>Product Management Component</h1>
+<ul>
+  <li *ngFor="let product of products" (click)="selectProduct(product)">
+    {{ product.name }}
+  </li>
+</ul>
+
+<app-product-details [product]="selectedProduct"></app-product-details>
+
+<p *ngIf="!selectedProduct">Select a product to see its availability.</p>
+<!-- <p *ngIf="selectedProduct">Availability: {{ selectedProduct.available ? 'Available' : 'Out of Stock' }}</p> -->

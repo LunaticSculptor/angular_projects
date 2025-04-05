@@ -1,0 +1,24 @@
+<main class="main">
+  <h1>Assignment: Enhancing User Input Handling in an Angular Table</h1>
+  <table>
+    <thead></thead>
+    <tbody>
+      @for(field of Fields;track $index) {
+      <tr>
+        <td>{{ field.fieldName }}</td>
+        <td>
+          <input
+            [type]="field.type"
+            [placeholder]="field.placeHolder"
+            [(ngModel)]="field.value"
+            [maxLength]="field.maxLength"
+            (input)="handleInput(field.fieldName, $event)"
+            [disabled]="checkForDisabled(field.fieldName)"
+          />
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+</main>

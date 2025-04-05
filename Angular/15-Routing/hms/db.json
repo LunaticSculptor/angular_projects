@@ -1,0 +1,28 @@
+{
+  "appointments": [
+    {
+      "id": "1",
+      "userId": "guest",
+      "date": "2025-03-28T10:00",
+      "serviceType": "Dental Checkup",
+      "patientDetails": "John Doe",
+      "specialRequests": "N/A"
+    },
+    {
+      "id": "2",
+      "userId": "guest",
+      "date": "2025-03-25T14:30",
+      "serviceType": "Eye Exam",
+      "patientDetails": "Jane Doe",
+      "specialRequests": "Need special eye drops"
+    },
+    {
+      "id": "84a3",
+      "userId": "2",
+      "date": "2025-03-29T14:18",
+      "serviceType": "Teeth",
+      "patientDetails": "asd",
+      "specialRequests": "Root Canal"
+    }
+  ]
+}

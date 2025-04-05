@@ -1,0 +1,78 @@
+<div class="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
+  <h2 class="text-2xl font-bold text-blue-600 mb-4">Create a New Quiz</h2>
+
+  <!-- Quiz Details Form -->
+  <div class="mb-4">
+    <label class="block text-gray-700 font-semibold">Category:</label>
+    <input type="text" [(ngModel)]="quiz.category" placeholder="Enter Category"
+      class="w-full border p-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
+  </div>
+
+  <div class="mb-4">
+    <label class="block text-gray-700 font-semibold">Max Score:</label>
+    <input type="number" [(ngModel)]="quiz.maxScore" placeholder="Enter Max Score"
+      class="w-full border p-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
+  </div>
+
+  <div class="mb-4">
+    <label class="block text-gray-700 font-semibold">Max Time (seconds):</label>
+    <input type="number" [(ngModel)]="quiz.maxTime" placeholder="Enter Max Time"
+      class="w-full border p-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
+  </div>
+
+  <!-- Add Questions -->
+  <h3 class="text-xl font-semibold text-gray-700 mt-6">Questions</h3>
+
+  <div *ngFor="let question of quiz.questions; let i = index" class="mb-4 p-4 border rounded-lg bg-gray-50">
+    <label class="block text-gray-700 font-semibold">Question {{ i + 1 }}:</label>
+    <input type="text" [(ngModel)]="question.title" placeholder="Enter Question"
+      class="w-full border p-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-300 mb-2">
+
+    <label class="block text-gray-700 font-semibold">Question Type:</label>
+    <select [(ngModel)]="question.type" class="w-full border p-2 rounded-lg mb-2">
+      <option value="mcq">MCQ</option>
+      <option value="text">Text</option>
+    </select>
+
+    <div *ngIf="question.type === 'mcq'">
+      <label class="block text-gray-700 font-semibold">Options:</label>
+      
+      <div *ngFor="let option of question.options; let j = index; trackBy: trackByIndex" class="flex items-center space-x-4 mb-2">
+        <input type="text" [ngModel]="option" (ngModelChange)="updateOption(question, j, $event)"
+          placeholder="Option {{ j + 1 }}"
+          class="w-full border p-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
+        <button (click)="removeOption(question, j)" class="bg-red-500 text-white px-3 py-1 rounded-md">Remove</button>
+      </div>
+      
+      <button (click)="addOption(question)" class="bg-green-500 text-white px-4 py-2 rounded-md mt-4">+ Add Option</button>      
+      
+      <ng-template #noOptions>
+        <p class="text-gray-500">No options added yet.</p>
+      </ng-template>
+
+      <!-- <button (click)="addOption(question)" class="bg-green-500 text-white px-3 py-1 rounded-md mt-2">+ Add Option</button> -->
+    </div>
+
+    <label class="block text-gray-700 font-semibold mt-2">Correct Answer:</label>
+    <input type="text" [(ngModel)]="question.correctAnswer" placeholder="Enter Correct Answer"
+      class="w-full border p-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
+
+    <label class="block text-gray-700 font-semibold mt-2">Marks If Correct:</label>
+    <input type="number" [(ngModel)]="question.marksIfCorrect" placeholder="Enter Marks"
+      class="w-full border p-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
+
+    <label class="block text-gray-700 font-semibold mt-2">Negative Marking:</label>
+    <input type="number" [(ngModel)]="question.negativeMark" placeholder="Enter Negative Mark"
+      class="w-full border p-2 rounded-lg focus:outline-none focus:ring focus:ring-blue-300">
+
+    <button (click)="removeQuestion(i)" class="bg-red-500 text-white px-3 py-1 rounded-md mt-2">Remove Question</button>
+  </div>
+
+  <button (click)="addQuestion()" class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4">+ Add Question</button>
+
+  <div class="mt-6">
+    <button (click)="submitQuiz()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+      Submit Quiz
+    </button>
+  </div>
+</div>

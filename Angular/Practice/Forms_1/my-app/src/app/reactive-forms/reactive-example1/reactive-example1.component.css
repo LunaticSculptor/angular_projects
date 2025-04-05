@@ -1,0 +1,23 @@
+.form-input{
+    margin: 2vh;
+}
+
+.error-text{
+    color: red;
+}
+
+button[type="submit"]{
+    margin-inline-end: 1.5vh;
+}
+
+input.ng-valid, select.ng-valid{
+    border: 2px solid green;
+}
+
+input.ng-invalid, select.ng-invalid{
+    border: 2px solid red;
+}
+
+input.ng-pristine {
+    border: 1px solid grey;
+}

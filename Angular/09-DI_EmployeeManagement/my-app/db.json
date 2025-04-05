@@ -1,0 +1,19 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "department": "IT"
+    },
+    {
+      "id": 2,
+      "name": "John Cena",
+      "department": "HR"
+    },
+    {
+      "id": 3,
+      "name": "Shamar Joseph",
+      "department": "Engineering"
+    }
+  ]
+}
