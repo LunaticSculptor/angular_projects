@@ -1,5 +1,5 @@
 # Contains projects for following topics:
-Javascript
+### Javascript
 
 01 - Getting Started with JS
 01.01 - Introduction to JavaScript
@@ -102,7 +102,7 @@ Javascript
 15.02 - OOPS Part 2
 
 
-Angular
+### Angular
 
 01 - Introduction to Angular
 01.01. Introduction to Angular
